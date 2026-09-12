@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Circular Path for Top Arc Bengali Text -->
+    <path id="topTextArc" d="M 65,250 A 185,185 0 0,1 435,250" fill="none" />
+    <!-- Circular Path for Bottom Arc Bengali Text -->
+    <path id="bottomTextArc" d="M 405,250 A 185,185 0 0,1 95,250" fill="none" />
+    
+    <!-- Clip Path for the Inner Wheel (Buddhist Flag Background) -->
+    <clipPath id="wheelClip">
+      <circle cx="250" cy="250" r="114" />
+    </clipPath>
+
+    <!-- Golden Gradient for the Dharmachakra -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFEB80" />
+      <stop offset="35%" stop-color="#E5A800" />
+      <stop offset="70%" stop-color="#FFD700" />
+      <stop offset="100%" stop-color="#B87D00" />
+    </linearGradient>
+
+    <radialGradient id="hubGold" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FFF5B0" />
+      <stop offset="60%" stop-color="#DAA520" />
+      <stop offset="100%" stop-color="#8B5A00" />
+    </radialGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="subtleWheelShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Outer Boundary Circle -->
+  <circle cx="250" cy="250" r="242" fill="#FFFFFF" stroke="#111111" stroke-width="4.5" />
+
+  <!-- Top Arc Text: বৌদ্ধ ছাত্র কল্যাণ পরিষদ, ডুয়েট, গাজীপুর। -->
+  <text font-family="'Hind Siliguri', 'Kalpurush', 'SutonnyMJ', 'Noto Serif Bengali', 'SolaimanLipi', sans-serif" font-weight="bold" font-size="28" fill="#111111" letter-spacing="1">
+    <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">
+      বৌদ্ধ ছাত্র কল্যাণ পরিষদ, ডুয়েট, গাজীপুর।
+    </textPath>
+  </text>
+
+  <!-- Bottom Arc Text: স্থাপিত - ২০০৪ইং -->
+  <text font-family="'Hind Siliguri', 'Kalpurush', 'SutonnyMJ', 'Noto Serif Bengali', 'SolaimanLipi', sans-serif" font-weight="bold" font-size="28" fill="#111111" letter-spacing="2">
+    <textPath href="#bottomTextArc" startOffset="50%" text-anchor="middle">
+      স্থাপিত - ২০০৪ইং
+    </textPath>
+  </text>
+
+  <!-- Buddhist Flag Background inside Dharmachakra Wheel -->
+  <g clip-path="url(#wheelClip)">
+    <!-- 5 Vertical Color Stripes -->
+    <!-- Stripe 1: Blue (Nil) -->
+    <rect x="136" y="136" width="38" height="228" fill="#002B7F" />
+    <!-- Stripe 2: Yellow (Pita) -->
+    <rect x="174" y="136" width="38" height="228" fill="#FFD700" />
+    <!-- Stripe 3: Red (Lohita) -->
+    <rect x="212" y="136" width="38" height="228" fill="#DA291C" />
+    <!-- Stripe 4: White (Odata) -->
+    <rect x="250" y="136" width="38" height="228" fill="#FFFFFF" />
+    <!-- Stripe 5: Saffron Orange (Manjettha) -->
+    <rect x="288" y="136" width="38" height="228" fill="#FF8C00" />
+    <!-- Stripe 6 (Rightmost): Prabhasvara (Horizontal Combination of 5 colors) -->
+    <g transform="translate(326, 136)">
+      <rect x="0" y="0" width="38" height="45.6" fill="#002B7F" />
+      <rect x="0" y="45.6" width="38" height="45.6" fill="#FFD700" />
+      <rect x="0" y="91.2" width="38" height="45.6" fill="#DA291C" />
+      <rect x="0" y="136.8" width="38" height="45.6" fill="#FFFFFF" />
+      <rect x="0" y="182.4" width="38" height="45.6" fill="#FF8C00" />
+    </g>
+  </g>
+
+  <!-- Dharmachakra (8-Spoked Noble Wheel of Dhamma with Handles) -->
+  <g filter="url(#subtleWheelShadow)">
+    <!-- Outer Golden Wheel Rim -->
+    <circle cx="250" cy="250" r="114" fill="none" stroke="url(#goldRim)" stroke-width="16" />
+    <circle cx="250" cy="250" r="122" fill="none" stroke="#684600" stroke-width="2.5" />
+    <circle cx="250" cy="250" r="106" fill="none" stroke="#684600" stroke-width="2.5" />
+    <circle cx="250" cy="250" r="114" fill="none" stroke="#FFF7B2" stroke-width="1.5" stroke-dasharray="6,4" />
+
+    <!-- 8 Rim Handles (Projecting radially outward from the rim) -->
+    <!-- Handle 0: Top (0 deg) -->
+    <g transform="translate(250,250)">
+      <!-- Loop 8 handles -->
+      <!-- We render each handle using rotate -->
+      <g>
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(45)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(90)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(135)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(180)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(225)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(270)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+      <g transform="rotate(315)">
+        <path d="M -7,-122 C -9,-140 -16,-150 -12,-160 C -9,-166 0,-170 0,-170 C 0,-170 9,-166 12,-160 C 16,-150 9,-140 7,-122 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="2" />
+        <circle cx="0" cy="-158" r="5" fill="#FFF7B2" stroke="#684600" stroke-width="1.2" />
+      </g>
+
+      <!-- 8 Ornate Diamond-Tapered Spoke Arms -->
+      <!-- Spoke 0 -->
+      <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+      <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      
+      <!-- Spoke 45 -->
+      <g transform="rotate(45)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+      <!-- Spoke 90 -->
+      <g transform="rotate(90)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+      <!-- Spoke 135 -->
+      <g transform="rotate(135)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+      <!-- Spoke 180 -->
+      <g transform="rotate(180)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+      <!-- Spoke 225 -->
+      <g transform="rotate(225)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+      <!-- Spoke 270 -->
+      <g transform="rotate(270)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+      <!-- Spoke 315 -->
+      <g transform="rotate(315)">
+        <path d="M -5,-35 L -10,-70 L -4,-106 L 4,-106 L 10,-70 L 5,-35 Z" fill="url(#goldRim)" stroke="#684600" stroke-width="1.8" />
+        <path d="M 0,-35 L 0,-106" stroke="#FFF7B2" stroke-width="1.4" />
+      </g>
+    </g>
+
+    <!-- Center Hub of the Wheel -->
+    <circle cx="250" cy="250" r="38" fill="url(#hubGold)" stroke="#452700" stroke-width="3" />
+    <circle cx="250" cy="250" r="35" fill="none" stroke="#FFF" stroke-width="1" />
+  </g>
+
+  <!-- Open Book Emblem at Wheel Hub with DUET Motto: প্রযুক্তিই প্রগতি -->
+  <g id="openBookHub">
+    <!-- Book Spine / Outer Backing -->
+    <path d="M 220,230 Q 235,232 250,236 Q 265,232 280,230 L 280,268 Q 265,270 250,274 Q 235,270 220,268 Z" fill="#2E4057" stroke="#1A2530" stroke-width="1.5" />
+    
+    <!-- Open Book Pages (White with subtle shadow) -->
+    <!-- Left Page -->
+    <path d="M 221,232 Q 235,234 249,237 L 249,271 Q 235,268 221,266 Z" fill="#FFFFFF" stroke="#333333" stroke-width="1.2" />
+    <!-- Right Page -->
+    <path d="M 251,237 Q 265,234 279,232 L 279,266 Q 265,268 251,271 Z" fill="#FFFFFF" stroke="#333333" stroke-width="1.2" />
+    
+    <!-- Center Crease -->
+    <line x1="250" y1="237" x2="250" y2="272" stroke="#444444" stroke-width="1.5" />
+
+    <!-- Left Page Text: প্রযুক্তিই -->
+    <text x="235" y="254" font-family="'Hind Siliguri', 'Kalpurush', sans-serif" font-weight="bold" font-size="8" fill="#111111" text-anchor="middle">
+      প্রযুক্তিই
+    </text>
+
+    <!-- Right Page Text: প্রগতি -->
+    <text x="265" y="254" font-family="'Hind Siliguri', 'Kalpurush', sans-serif" font-weight="bold" font-size="8.5" fill="#111111" text-anchor="middle">
+      প্রগতি
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "name": "BSWA DUET - Buddhist Students Welfare Association",
+  "description": "Official digital platform of Buddhist Students Welfare Association (BSWA), DUET Gazipur for member management, alumni networking, merit scholarship system, donations, finance, and leadership records.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
