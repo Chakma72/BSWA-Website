@@ -14,10 +14,11 @@ import {
   IncomeRecord,
   LeaderRecord,
   MediaItem,
+  GalleryPhoto,
   AuditLog,
   NotificationItem,
   ScholarshipStatus
-} from '../types';
+  } from '../types';
 import {
   INITIAL_USERS,
   INITIAL_NOTICES,
@@ -32,8 +33,9 @@ import {
   INITIAL_INCOME,
   INITIAL_LEADERS,
   INITIAL_MEDIA,
+  INITIAL_GALLERY,
   INITIAL_AUDIT_LOGS
-} from '../data/initialData';
+  } from '../data/initialData';
 
 interface OtpFlowState {
   isOpen: boolean;
@@ -66,6 +68,7 @@ interface AppContextType {
   incomeRecords: IncomeRecord[];
   leaders: LeaderRecord[];
   mediaItems: MediaItem[];
+  galleryPhotos: GalleryPhoto[];
   auditLogs: AuditLog[];
   notifications: NotificationItem[];
   
@@ -120,6 +123,11 @@ interface AppContextType {
   updateLeader: (ldr: LeaderRecord) => void;
   deleteLeader: (id: string) => void;
   
+  // Photo Gallery
+  addGalleryPhoto: (photo: Omit<GalleryPhoto, 'id' | 'year'>) => void;
+  updateGalleryPhoto: (photo: GalleryPhoto) => void;
+  deleteGalleryPhoto: (id: string) => void;
+
   // Notifications
   markNotificationAsRead: (id: string) => void;
   
@@ -228,6 +236,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [mediaItems] = useState<MediaItem[]>(INITIAL_MEDIA);
 
+  const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhoto[]>(() => {
+    const saved = localStorage.getItem(`${LOCAL_STORAGE_KEY}_gallery`);
+    return saved ? JSON.parse(saved) : INITIAL_GALLERY;
+  });
+
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>(() => {
     const saved = localStorage.getItem(`${LOCAL_STORAGE_KEY}_audit`);
     return saved ? JSON.parse(saved) : INITIAL_AUDIT_LOGS;
@@ -279,6 +292,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem(`${LOCAL_STORAGE_KEY}_expenses`, JSON.stringify(expenses));
     localStorage.setItem(`${LOCAL_STORAGE_KEY}_income`, JSON.stringify(incomeRecords));
     localStorage.setItem(`${LOCAL_STORAGE_KEY}_leaders`, JSON.stringify(leaders));
+    localStorage.setItem(`${LOCAL_STORAGE_KEY}_gallery`, JSON.stringify(galleryPhotos));
     localStorage.setItem(`${LOCAL_STORAGE_KEY}_audit`, JSON.stringify(auditLogs));
   }, [
     users,
@@ -293,6 +307,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     expenses,
     incomeRecords,
     leaders,
+    galleryPhotos,
     auditLogs
   ]);
 
@@ -829,6 +844,31 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  // Photo Gallery
+  const addGalleryPhoto = (photo: Omit<GalleryPhoto, 'id' | 'year'>) => {
+    const year = (photo.date || new Date().toISOString().split('T')[0]).slice(0, 4);
+    const newPhoto: GalleryPhoto = {
+      ...photo,
+      id: `gal-${Date.now()}`,
+      year,
+      uploadedBy: photo.uploadedBy || currentUser?.fullName || 'BSWA Admin',
+    };
+    setGalleryPhotos(prev => [newPhoto, ...prev]);
+    addAuditLog('Gallery Photo Added', `Uploaded "${newPhoto.title}" (${newPhoto.category}, ${year})`);
+  };
+
+  const updateGalleryPhoto = (photo: GalleryPhoto) => {
+    const year = (photo.date || photo.year).slice(0, 4);
+    setGalleryPhotos(prev => prev.map(p => (p.id === photo.id ? { ...photo, year } : p)));
+    addAuditLog('Gallery Photo Updated', `Edited "${photo.title}"`);
+  };
+
+  const deleteGalleryPhoto = (id: string) => {
+    const target = galleryPhotos.find(p => p.id === id);
+    setGalleryPhotos(prev => prev.filter(p => p.id !== id));
+    addAuditLog('Gallery Photo Removed', `Removed "${target?.title || id}" from the gallery`);
+  };
+
   // Backup & Restore
   const backupDatabaseJson = (): string => {
     const fullBackup = {
@@ -903,6 +943,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         incomeRecords,
         leaders,
         mediaItems,
+        galleryPhotos,
         auditLogs,
         notifications,
         otpState,
@@ -940,6 +981,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         addLeader,
         updateLeader,
         deleteLeader,
+        addGalleryPhoto,
+        updateGalleryPhoto,
+        deleteGalleryPhoto,
         markNotificationAsRead,
         resetToDemoData,
         backupDatabaseJson,
