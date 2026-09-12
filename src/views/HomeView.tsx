@@ -1,12 +1,10 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { OfficialLogo } from '../components/OfficialLogo';
 import {
   GraduationCap,
   HandCoins,
   Users,
   QrCode,
-  Heart,
   Quote,
   ChevronRight,
   ArrowRight
@@ -76,52 +74,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
   ];
 
   return (
-    <div className="space-y-8 pb-16">
-
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#6b1426] via-[#540d1a] to-[#30050e] text-white shadow-xl border border-[#d4af37]/30 p-6 sm:p-8 md:p-10">
-        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
-          {/* Emblem */}
-          <div className="flex-shrink-0">
-            <OfficialLogo size="lg" showText={false} className="justify-center" />
-          </div>
-
-          {/* Title Block */}
-          <div className="flex-1 text-center lg:text-left space-y-3">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-[#d4af37]/60 text-amber-200 text-[10px] sm:text-xs font-bold tracking-widest uppercase">
-              Established 2004
-            </span>
-            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-amber-50 leading-tight text-balance">
-              Buddhist Students Welfare Association (BSWA), DUET
-            </h1>
-            <p className="italic text-amber-300 text-sm sm:text-base font-medium">
-              {language === 'en'
-                ? 'Serving Buddhist Engineering Undergraduates for 22 Glorious Years'
-                : '২২ বছর ধরে বৌদ্ধ প্রকৌশল শিক্ষার্থীদের সেবায় নিয়োজিত'}
-            </p>
-          </div>
-
-          {/* Actions */}
-          <div className="flex-shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto">
-            <button
-              onClick={() => onSelectTab('scholarship')}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#e5b53c] to-[#b38600] text-[#3a0610] font-bold text-sm shadow-lg hover:brightness-105 transition-all flex items-center justify-center gap-2"
-            >
-              <GraduationCap className="w-4 h-4" />
-              <span>Apply Scholarship</span>
-            </button>
-            <button
-              onClick={() => onSelectTab('donations')}
-              className="px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm shadow-lg transition-all flex items-center justify-center gap-2"
-            >
-              <Heart className="w-4 h-4" />
-              <span>Donate Now</span>
-            </button>
-          </div>
-        </div>
-      </section>
+    <div className="space-y-8 pb-16 pt-2">
 
       {/* Feature Tiles */}
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
