@@ -24,7 +24,7 @@ export const ScholarshipView: React.FC = () => {
   const {
     currentUser,
     activeRole,
-    scholarshipApplications,
+    scholarshipApps: scholarshipApplications,
     scholarshipRecipients,
     scholarshipDonors,
     submitScholarshipApplication,
