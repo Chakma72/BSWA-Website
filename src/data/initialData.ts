@@ -12,9 +12,10 @@ import {
   IncomeRecord,
   LeaderRecord,
   MediaItem,
+  GalleryPhoto,
   AuditLog,
   BuddhistHoliday
-} from '../types';
+  } from '../types';
 
 export const INITIAL_USERS: User[] = [
   {
@@ -715,6 +716,49 @@ export const INITIAL_MEDIA: MediaItem[] = [
     type: 'photo',
     url: 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=800&q=80',
     date: '2025-09-12'
+  }
+];
+
+export const INITIAL_GALLERY: GalleryPhoto[] = [
+  {
+    id: 'gal-01',
+    title: 'Buddha Purnima Peace Procession',
+    caption: 'Students and faculty light 1000 butter lamps across the DUET campus.',
+    category: 'Buddha Purnima',
+    url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1000&q=80',
+    date: '2025-05-23',
+    year: '2025',
+    uploadedBy: 'BSWA Media Team'
+  },
+  {
+    id: 'gal-02',
+    title: 'Kathina Chibar Dana Ceremony',
+    caption: 'Offering of the holy robe with alumni and current students.',
+    category: 'Kathina',
+    url: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1000&q=80',
+    date: '2025-11-08',
+    year: '2025',
+    uploadedBy: 'BSWA Media Team'
+  },
+  {
+    id: 'gal-03',
+    title: 'Merit Scholarship Award Ceremony',
+    caption: 'Stipend certificates handed to top-performing Buddhist undergraduates.',
+    category: 'Scholarship',
+    url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
+    date: '2024-12-15',
+    year: '2024',
+    uploadedBy: 'BSWA Media Team'
+  },
+  {
+    id: 'gal-04',
+    title: 'Voluntary Blood Donation Camp',
+    caption: '85 bags collected for the DUET community and Gazipur Sadar Hospital.',
+    category: 'Welfare',
+    url: 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1000&q=80',
+    date: '2024-09-12',
+    year: '2024',
+    uploadedBy: 'BSWA Media Team'
   }
 ];
 

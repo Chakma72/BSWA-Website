@@ -279,6 +279,17 @@ export interface MediaItem {
   date: string;
 }
 
+export interface GalleryPhoto {
+  id: string;
+  title: string;
+  caption?: string;
+  category: string;
+  url: string;
+  date: string; // ISO yyyy-mm-dd
+  year: string;
+  uploadedBy?: string;
+}
+
 export interface AuditLog {
   id: string;
   action: string;
