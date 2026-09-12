@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import {
   GraduationCap,
@@ -7,9 +7,33 @@ import {
   QrCode,
   Quote,
   ChevronRight,
-  ArrowRight
+  ArrowRight,
+  Pencil,
+  Check,
+  X
 } from 'lucide-react';
 import { BUDDHIST_HOLIDAYS_2026 } from '../data/initialData';
+
+const BANNER_STORAGE_KEY = 'bswa_temple_banner_v1';
+
+interface BannerContent {
+  title: string;
+  subtitle: string;
+}
+
+const DEFAULT_BANNER: BannerContent = {
+  title: 'A Spiritual Refuge for Every Buddhist Engineer',
+  subtitle: 'Rooted in the compassionate teachings of Lord Buddha, BSWA DUET nurtures wisdom, unity, and service across generations.'
+};
+
+const loadBanner = (): BannerContent => {
+  try {
+    const saved = localStorage.getItem(BANNER_STORAGE_KEY);
+    return saved ? { ...DEFAULT_BANNER, ...JSON.parse(saved) } : DEFAULT_BANNER;
+  } catch {
+    return DEFAULT_BANNER;
+  }
+};
 
 interface HomeViewProps {
   onSelectTab: (tab: string) => void;
@@ -28,7 +52,28 @@ const compactDate = (str: string): string => {
 };
 
 export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
-  const { language, leaders } = useApp();
+  const { language, leaders, activeRole } = useApp();
+
+  const canEditBanner = activeRole === 'admin' || activeRole === 'executive';
+  const [banner, setBanner] = useState<BannerContent>(loadBanner);
+  const [isEditingBanner, setIsEditingBanner] = useState(false);
+  const [draftBanner, setDraftBanner] = useState<BannerContent>(banner);
+
+  const startEditBanner = () => {
+    setDraftBanner(banner);
+    setIsEditingBanner(true);
+  };
+
+  const saveBanner = () => {
+    setBanner(draftBanner);
+    localStorage.setItem(BANNER_STORAGE_KEY, JSON.stringify(draftBanner));
+    setIsEditingBanner(false);
+  };
+
+  const cancelEditBanner = () => {
+    setDraftBanner(banner);
+    setIsEditingBanner(false);
+  };
 
   const currentPresident = leaders.find(l => l.role === 'President' && l.type === 'current');
   const currentGS = leaders.find(l => l.role === 'General Secretary' && l.type === 'current');
@@ -75,6 +120,68 @@ export const HomeView: React.FC<HomeViewProps> = ({ onSelectTab }) => {
 
   return (
     <div className="space-y-8 pb-16 pt-2">
+
+      {/* Editable Buddhist Temple Banner */}
+      <section className="relative overflow-hidden rounded-2xl border border-[#ece4d6] dark:border-amber-900/30 shadow-sm">
+        <img
+          src="/images/buddhist-temple.png"
+          alt="Golden Buddhist temple at dawn"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#4a0d18]/95 via-[#731326]/85 to-[#731326]/40" />
+
+        <div className="relative p-6 sm:p-10 min-h-[220px] flex flex-col justify-center">
+          {isEditingBanner ? (
+            <div className="max-w-2xl space-y-3">
+              <input
+                value={draftBanner.title}
+                onChange={e => setDraftBanner(d => ({ ...d, title: e.target.value }))}
+                className="w-full rounded-lg bg-white/95 text-stone-900 font-serif font-bold text-xl px-3 py-2 outline-none focus:ring-2 focus:ring-[#d4af37]"
+                placeholder="Banner title"
+              />
+              <textarea
+                value={draftBanner.subtitle}
+                onChange={e => setDraftBanner(d => ({ ...d, subtitle: e.target.value }))}
+                rows={3}
+                className="w-full rounded-lg bg-white/95 text-stone-800 text-sm px-3 py-2 outline-none focus:ring-2 focus:ring-[#d4af37] resize-none"
+                placeholder="Banner subtitle"
+              />
+              <div className="flex gap-2">
+                <button
+                  onClick={saveBanner}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-[#d4af37] px-4 py-2 text-sm font-semibold text-[#4a0d18] hover:bg-[#c99a2e] transition-colors"
+                >
+                  <Check className="w-4 h-4" /> Save
+                </button>
+                <button
+                  onClick={cancelEditBanner}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/30 transition-colors"
+                >
+                  <X className="w-4 h-4" /> Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="max-w-2xl">
+              <h2 className="font-serif font-bold text-2xl sm:text-3xl text-white leading-tight text-balance">
+                {banner.title}
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-amber-100/90 leading-relaxed text-pretty">
+                {banner.subtitle}
+              </p>
+            </div>
+          )}
+
+          {canEditBanner && !isEditingBanner && (
+            <button
+              onClick={startEditBanner}
+              className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-lg bg-white/15 backdrop-blur px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/25 transition-colors"
+            >
+              <Pencil className="w-3.5 h-3.5" /> Edit Banner
+            </button>
+          )}
+        </div>
+      </section>
 
       {/* Feature Tiles */}
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
